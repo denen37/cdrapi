@@ -9,9 +9,14 @@ class Call(models.Model):
     callDirection=models.BooleanField(default=False)
     callStatus=models.BooleanField(default=False)
     callDuration=models.IntegerField()
-    callCost=models.DecimalField(max_digits=10, decimal_places=2)
+    # callCost=models.DecimalField(max_digits=10, decimal_places=2)
+    callCost = models.FloatField()
     callStartTime=models.DateTimeField()
     callEndTime=models.DateTimeField()
+
+    class Meta:
+        db_table = "calls"
+        managed = False
 
     def __str__(self):
         return f"{self.callerNumber} -> {self.receiverNumber}"
