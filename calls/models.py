@@ -1,7 +1,9 @@
 from django.db import models
+from django_mongodb_backend.fields import ObjectIdAutoField
 
 # Create your models here.
 class Call(models.Model):
+    id = ObjectIdAutoField(primary_key=True, db_column="_id")
     callerName = models.CharField(max_length=100)
     callerNumber = models.CharField(max_length=20)
     receiverNumber = models.CharField(max_length=20)
@@ -19,4 +21,4 @@ class Call(models.Model):
         managed = False
 
     def __str__(self):
-        return f"{self.callerNumber} -> {self.receiverNumber}"
+        return f"{self.callerName} : {self.callerNumber} -> {self.receiverNumber}"
